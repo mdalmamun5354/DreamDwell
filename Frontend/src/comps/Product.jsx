@@ -1,150 +1,54 @@
 import React from 'react'
+import { useAppContext } from '../app';
 
 export default function Product() {
+
+    const { item, setRoot } = useAppContext();
+    console.log(item);
+
     return (
-        <>
-            {/* Product section */}
-            <section className="py-5">
-                <div className="container px-4 px-lg-5 my-5">
-                    <div className="row gx-4 gx-lg-5 align-items-center">
-                        <div className="col-md-6"><img className="card-img-top mb-5 mb-md-0"
-                            src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
-                        <div className="col-md-6">
-                            <div className="small mb-1">SKU: BST-498</div>
-                            <h1 className="display-5 fw-bolder">Shop item template</h1>
-                            <div className="fs-5 mb-5">
-                                <span className="text-decoration-line-through">$45.00</span>
-                                <span>$40.00</span>
-                            </div>
-                            <p className="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem
-                                quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis
-                                delectus ipsam minima ea iste laborum vero?</p>
-                            <div className="d-flex">
-                                <input className="form-control text-center me-3" id="inputQuantity" type="num" value="1"
-                                    style="max-width: 3rem" />
-                                <button className="btn btn-outline-dark flex-shrink-0" type="button">
-                                    <i className="bi-cart-fill me-1"></i>
-                                    Add to cart
-                                </button>
-                            </div>
+        <div className='p-5' style={{ backgroundColor: '#f7eded', padding: '50px' }}>
+            <div className="container p-5">
+                <div className="offset-lg-2 hotel-info">
+                    <h1 className="text-center" style={{ fontSize: '30px' }}>{item.name}</h1>
+                    <div className="card">
+                        <img
+                            src={`uploads/hotels/${item.img}`}
+                            className="card-img-top"
+                            alt="Hotel Image"
+                            style={{
+                                margin: '20px auto',
+                                display: 'block',
+                                height: '500px',
+                                maxWidth: '100%',
+                            }}
+                        />
+                        <div className="card-body">
+                            <h5 className="card-title">Hotel Description</h5>
+                            <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</p>
+                            <p className="card-text">Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.</p>
+                        </div>
+                        <ul className="list-group list-group-flush">
+                            <li className="list-group-item"><strong>Location:</strong> {item.location}</li>
+                            <li className="list-group-item"><strong>Rating:</strong> {item.rating}/5</li>
+                            <li className="list-group-item"><strong>Price Range:</strong> {item.price} per night</li>
+                            <li className="list-group-item"><strong>Facilities:</strong> {item.facilities}</li>
+                            <li className="list-group-item"><strong>Room Types:</strong> {item.type}</li>
+                            <li className="list-group-item"><strong>Check-in Time:</strong> 3:00 PM</li>
+                            <li className="list-group-item"><strong>Check-out Time:</strong> 12:00 PM</li>
+                            <li className="list-group-item"><strong>Local Attractions:</strong> {item.localAttractions}</li>
+                        </ul>
+                        <div className="card-body">
+                            <button className="btn btn-danger btn-block">Book Now</button>
+                            <button className="btn btn-secondary btn-block"
+                                onClick={() => {
+                                    setRoot('Home');
+                                }}
+                            >Cancel</button>
                         </div>
                     </div>
                 </div>
-            </section>
-            {/* Related items section*/}
-            <section className="py-5 bg-light">
-                <div className="container px-4 px-lg-5 mt-5">
-                    <h2 className="fw-bolder mb-4">Related products</h2>
-                    <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                        <div className="col mb-5">
-                            <div className="card h-100">
-                                {/* Product image*/}
-                                <img className="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                                {/* Product details*/}
-                                <div className="card-body p-4">
-                                    <div className="text-center">
-                                        {/* Product name*/}
-                                        <h5 className="fw-bolder">Fancy Product</h5>
-                                        {/* Product price*/}
-                                        $40.00 - $80.00
-                                    </div>
-                                </div>
-                                {/* Product actions*/}
-                                <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div className="text-center"><a className="btn btn-outline-dark mt-auto" href="#">View options</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col mb-5">
-                            <div className="card h-100">
-                                {/* Sale badge*/}
-                                <div className="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
-                                </div>
-                                {/* Product image*/}
-                                <img className="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                                {/* Product details*/}
-                                <div className="card-body p-4">
-                                    <div className="text-center">
-                                        {/* Product name*/}
-                                        <h5 className="fw-bolder">Special Item</h5>
-                                        {/* Product reviews*/}
-                                        <div className="d-flex justify-content-center small text-warning mb-2">
-                                            <div className="bi-star-fill"></div>
-                                            <div className="bi-star-fill"></div>
-                                            <div className="bi-star-fill"></div>
-                                            <div className="bi-star-fill"></div>
-                                            <div className="bi-star-fill"></div>
-                                        </div>
-                                        {/* Product price*/}
-                                        <span className="text-muted text-decoration-line-through">$20.00</span>
-                                        $18.00
-                                    </div>
-                                </div>
-                                {/* Product actions*/}
-                                <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div className="text-center"><a className="btn btn-outline-dark mt-auto" href="#">Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col mb-5">
-                            <div className="card h-100">
-                                {/* Sale badge*/}
-                                <div className="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
-                                </div>
-                                {/* Product image*/}
-                                <img className="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                                {/* Product details*/}
-                                <div className="card-body p-4">
-                                    <div className="text-center">
-                                        {/* Product name*/}
-                                        <h5 className="fw-bolder">Sale Item</h5>
-                                        {/* Product price*/}
-                                        <span className="text-muted text-decoration-line-through">$50.00</span>
-                                        $25.00
-                                    </div>
-                                </div>
-                                {/* Product actions*/}
-                                <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div className="text-center"><a className="btn btn-outline-dark mt-auto" href="#">Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col mb-5">
-                            <div className="card h-100">
-                                {/* Product image*/}
-                                <img className="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                                {/* Product details*/}
-                                <div className="card-body p-4">
-                                    <div className="text-center">
-                                        {/* Product name*/}
-                                        <h5 className="fw-bolder">Popular Item</h5>
-                                        {/* Product reviews*/}
-                                        <div className="d-flex justify-content-center small text-warning mb-2">
-                                            <div className="bi-star-fill"></div>
-                                            <div className="bi-star-fill"></div>
-                                            <div className="bi-star-fill"></div>
-                                            <div className="bi-star-fill"></div>
-                                            <div className="bi-star-fill"></div>
-                                        </div>
-                                        {/* Product price*/}
-                                        $40.00
-                                    </div>
-                                </div>
-                                {/* Product actions*/}
-                                <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div className="text-center"><a className="btn btn-outline-dark mt-auto" href="#">Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            {/* Core theme JS*/}
-            <script src="js/scripts.js"></script>
-        </>
+            </div>
+        </div>
     )
 }

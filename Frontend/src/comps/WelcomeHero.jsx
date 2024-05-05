@@ -1,10 +1,7 @@
-import backgroundImage from './../assets/images/banner.jpg'
-
-
 const WelcomeHero = () => {
   return (
     <section id="home" className="welcome-hero" style={{
-      background: `url(${backgroundImage})`, // Set the background image
+      background: `url("assets/images/banner.jpg")`, // Set the background image
       backgroundRepeat: 'no-repeat', // Optional: Set background repeat
       backgroundSize: 'cover', // Optional: Set background size
       // You can add more background properties here

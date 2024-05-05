@@ -1,9 +1,25 @@
-const ExploreItem = ({ item }) => {
+import { useAppContext } from "../app";
+
+const ExploreItem = ({ item, theme }) => {
+
+  const { setRoot, setItem } = useAppContext();
+  
   return (
     <div className=" col-md-4 col-sm-6">
-      <div className="single-explore-item">
+      <div className="single-explore-item"
+      onClick={()=> {
+        setRoot("Product");
+        setItem(item);
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth' // Optional: adds smooth scrolling animation
+        });
+      }}
+      >
         <div className="single-explore-img">
-          <img src={item.img} alt="explore image" />
+          <div className="image-container">
+            <img src={`uploads/hotels/${item.img}`} alt="hotel image" />
+          </div>
           <div className="single-explore-img-info">
             <button>{item.imgInfo}</button>
             <div className="single-explore-image-icon-box">
@@ -22,23 +38,23 @@ const ExploreItem = ({ item }) => {
             </div>
           </div>
         </div>
-        <div className={"single-explore-txt bg-theme-" + item.theme}>
+        <div className={"single-explore-txt bg-theme-" + theme}>
           <h2><a href="#">{item.name}</a></h2>
           <p className="explore-rating-price">
             <span className="explore-rating">{item.rating}</span>
             <a href="#"> {item.ratingCount} ratings</a>
             <span className="explore-price-box">
               form
-              <span className="explore-price">{item.price}</span>
+              <span className="explore-price"> {item.price}</span>
             </span>
-            <a href="#">{item.type}</a>
+            <a href="#">{item.location}</a>
           </p>
           <div className="explore-person">
             <div className="row">
               <div className="col-sm-2">
                 <div className="explore-person-img">
                   <a href="#">
-                    <img src={item.person.img} alt="explore person" />
+                    <img src={`uploads/users/${item.person.img}`} alt="explore person" />
                   </a>
                 </div>
               </div>
