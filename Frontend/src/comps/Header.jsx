@@ -1,4 +1,12 @@
+import { Link } from "react-router-dom";
+import { useAppContext } from "../app";
+
+import '../assets/stylesheets/hoverMsg.css'
+import toast from "react-hot-toast";
+
 const Header = () => {
+  const { user, setUser } = useAppContext();
+
   return (
     <>
       <header id="header-top" className="header-top">
@@ -33,10 +41,21 @@ const Header = () => {
                   +880 1796 031853
                 </li>
                 <li className="header-top-contact">
-                  <a href="#">sign in</a>
-                </li>
-                <li className="header-top-contact">
-                  <a href="#">register</a>
+                  {user ? (
+                    <>
+                      <Link to='/' className="hover-target"
+                        onClick={() => {
+                          setUser(null);
+                          toast('Logged Out!', {
+                            icon: '🔔',
+                          });
+                        }}
+                      >{user.username}</Link>
+                      {user.isAdmin && <Link to='/dashboard'>Dashboard</Link>}
+                    </>
+                  ) : (
+                    <Link to='/login'>Login</Link>
+                  )}
                 </li>
               </ul>
             </div>
@@ -59,7 +78,7 @@ const Header = () => {
 
               <div className="collapse navbar-collapse menu-ui-design" id="navbar-menu">
                 <ul className="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                  <li className=" scroll active"><a href="#home">home</a></li>
+                  <li className=" scroll active"><Link to='/'>home</Link></li>
                   <li className="scroll"><a href="#works">how it works</a></li>
                   <li className="scroll"><a href="#explore">explore</a></li>
                   <li className="scroll"><a href="#reviews">review</a></li>

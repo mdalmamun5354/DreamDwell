@@ -1,25 +1,47 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
+import { Link, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+
 import axios from 'axios';
 import './app.css';
-import Blogs from './comps/Blogs';
-import Contact from './comps/Contact';
-import Explore from './comps/Explore';
-import Footer from './comps/Footer';
-import Header from './comps/Header';
-import ListTopics from './comps/ListTopics';
-import Product from './comps/Product';
-import Reviews from './comps/Reviews';
-import Statistics from './comps/Statistics';
-import WelcomeHero from './comps/WelcomeHero';
-import Works from './comps/Works';
+import Home from "./pages/Home";
+import Hotel from "./pages/Hotel";
+import Login from "./pages/Login";
 
 // Create context
 const AppContext = createContext();
 
 export function App() {
-  const [root, setRoot] = useState("Home");
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Home />
+    },
+    {
+      path: '/hotel',
+      element: <Hotel />
+    },
+    {
+      path: '/contact',
+      element: <h2>This is contact page</h2>
+    },
+    {
+      path: '/login',
+      element: <Login />
+    },
+    {
+      path: '/dashboard',
+      element: <>
+        <h2>This is dashboard page</h2>
+        <Link to='/'>Home</Link>
+      </>
+    },
+  ])
+
+
+  const [user, setUser] = useState(null)
   const [hotels, setHotels] = useState([]);
-  const [item, setItem] = useState();
+  const [item, setItem] = useState(hotels[0]);
 
   // get data
   useEffect(() => {
@@ -35,28 +57,9 @@ export function App() {
   }, []);
 
   return (
-    <AppContext.Provider value={{ root, setRoot, hotels, setHotels, item, setItem}}>
-      <Header />
-      {(() => {
-        switch (root) {
-          case 'Product':
-            return <Product />;
-          default:
-            return (
-              <>
-                <WelcomeHero />
-                <ListTopics />
-                <Works />
-                <Explore />
-                {/* <Reviews /> */}
-                <Statistics />
-                <Blogs />
-                <Contact />
-              </>
-            );
-        }
-      })()}
-      <Footer />
+    <AppContext.Provider value={{ hotels, setHotels, item, setItem, user, setUser }}>
+      <RouterProvider router={router} />
+      <Toaster />
     </AppContext.Provider>
   );
 }

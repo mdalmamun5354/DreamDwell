@@ -3,9 +3,11 @@ import dotenv from "dotenv"
 import mongoose from "mongoose";
 import cors from 'cors'
 import hotelsRouter from './routes/hotels.route.js'
+import userRouter from './routes/user.route.js'
 
 const app = express()
 app.use(cors())
+app.use(express.json())
 dotenv.config()
 const PORT = process.env.PORT || 3001;
 
@@ -25,6 +27,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/hotels', hotelsRouter)
+app.use('/user', userRouter)
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`)

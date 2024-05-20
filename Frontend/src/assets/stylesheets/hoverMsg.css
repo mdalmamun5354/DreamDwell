@@ -1,0 +1,30 @@
+.hover-target {
+  position: relative; /* Required for positioning the hover text */
+  display: inline-block;
+  /* padding: 10px 20px; */
+  /* background-color: #f0f0f0;
+  border: 1px solid #ccc; */
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.hover-target::after {
+  content: 'Log out';
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  background-color: #33333377;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.hover-target:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
