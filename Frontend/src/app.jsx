@@ -7,6 +7,7 @@ import './app.css';
 import Home from "./pages/Home";
 import Hotel from "./pages/Hotel";
 import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 
 // Create context
 const AppContext = createContext();
@@ -31,10 +32,7 @@ export function App() {
     },
     {
       path: '/dashboard',
-      element: <>
-        <h2>This is dashboard page</h2>
-        <Link to='/'>Home</Link>
-      </>
+      element: <Dashboard />
     },
   ])
 

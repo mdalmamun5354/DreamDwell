@@ -1,0 +1,59 @@
+.dashboard-con {
+  font-family: 'Arial', sans-serif;
+}
+.sidebar {
+  height: 100vh;
+  background-color: #f8f9fa;
+}
+.dashboard-header {
+margin-top: 20px;
+margin-bottom: 20px;
+}
+
+.dashboard-cards {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-gap: 20px;
+}
+
+.dashboard-card {
+background: #fff;
+border: 1px solid #ddd;
+padding: 20px;
+box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+.table-dashboard {
+width: 100%;
+margin-top: 20px;
+border-collapse: collapse;
+}
+
+.table-dashboard th, .table-dashboard td {
+border: 1px solid #ddd;
+padding: 8px;
+text-align: left;
+}
+
+.table-dashboard th {
+background-color: #f8f9fa;
+}
+
+.dash-nav-item {
+  margin-inline: 5px;
+}
+
+.action-btn {
+  margin-inline: 3px;
+}
+
+.nav-select-field-con li {
+  padding: 10px 10px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.selected {
+  background-color: rgb(255, 208, 208);
+  border-radius: 10px;
+}

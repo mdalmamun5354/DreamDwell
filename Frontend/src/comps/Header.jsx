@@ -44,6 +44,7 @@ const Header = () => {
                   {user ? (
                     <>
                       <Link to='/' className="hover-target"
+                      style={{marginRight: "10px"}}
                         onClick={() => {
                           setUser(null);
                           toast('Logged Out!', {
