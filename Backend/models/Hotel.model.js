@@ -14,12 +14,10 @@ const hotelSchema = new mongoose.Schema({
     required: true
   },
   rating: {
-    type: String,
-    required: true
+    type: String
   },
   ratingCount: {
-    type: Number,
-    required: true
+    type: Number
   },
   price: {
     type: String,
@@ -31,25 +29,20 @@ const hotelSchema = new mongoose.Schema({
   },
   person: {
     img: {
-      type: String,
-      required: true
+      type: String
     },
     comment: {
-      type: String,
-      required: true
+      type: String
     }
   },
   facilities: {
-    type: String,
-    required: true
+    type: String
   },
   type: {
-    type: String,
-    required: true
+    type: String
   },
   localAttractions: {
-    type: String,
-    required: true
+    type: String
   }
 });
 

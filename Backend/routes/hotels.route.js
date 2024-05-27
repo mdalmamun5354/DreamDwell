@@ -1,11 +1,14 @@
 import express from 'express'
-import { getHotels, dropHotel } from '../controllers/hotels.controller.js';
+import { getAll, drop, add } from '../controllers/hotels.controller.js';
 const router = express.Router();
 
 // GET all hotels
-router.get('/', getHotels);
+router.get('/', getAll);
 
 // drop hotel
-router.delete('/drop/:id', dropHotel);
+router.delete('/drop/:id', drop);
+
+// Add hotel
+router.post('/add', add);
 
 export default router;
