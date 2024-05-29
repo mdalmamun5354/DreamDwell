@@ -3,7 +3,7 @@ const BlogItem = ({ item }) => {
     <div className="col-md-4 col-sm-6">
       <div className="single-blog-item">
         <div className="single-blog-item-img">
-          <img src={item.img} alt="blog image" />
+          <img src={`uploads/blog/${item.img}`} alt="blog image" />
         </div>
         <div className="single-blog-item-txt">
           <h2><a href="#">{item.title}</a></h2>

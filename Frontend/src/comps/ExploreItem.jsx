@@ -42,8 +42,8 @@ const ExploreItem = ({ item, theme }) => {
           <div className={"single-explore-txt bg-theme-" + theme}>
             <h2><a href="#">{item.name}</a></h2>
             <p className="explore-rating-price">
-              <span className="explore-rating">{item.rating}</span>
-              <a href="#"> {item.ratingCount} ratings</a>
+              <span className="explore-rating">{item.rating || 'N/A'}</span>
+              <a href="#"> {item.ratingCount || '0'} ratings</a>
               <span className="explore-price-box">
                 form
                 <span className="explore-price"> {item.price}</span>

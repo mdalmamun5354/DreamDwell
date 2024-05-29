@@ -55,3 +55,23 @@ export const add = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
+// Edit a hotel by ID
+export const edit = async (req, res) => {
+  const { id } = req.params;
+  const { name, rating, ratingCount, price, location, facilities, type, localAttractions } = req.body;
+  try {
+    const updatedHotel = await Hotel.findByIdAndUpdate(
+      id,
+      { name, rating, ratingCount, price, location, facilities, type, localAttractions },
+      { new: true } // To return the updated document
+    );
+    if (!updatedHotel) {
+      return res.status(404).json({ message: "Hotel not found" });
+    }
+    res.status(200).json(updatedHotel);
+  } catch (error) {
+    console.log("Error: ", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};

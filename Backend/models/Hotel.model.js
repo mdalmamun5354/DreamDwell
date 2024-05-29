@@ -43,6 +43,10 @@ const hotelSchema = new mongoose.Schema({
   },
   localAttractions: {
     type: String
+  },
+  isOpen: {
+    type: Boolean,
+    default: true
   }
 });
 

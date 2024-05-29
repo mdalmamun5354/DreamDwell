@@ -2,26 +2,34 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import { useAppContext } from "../../../app";
+import toast from 'react-hot-toast';
 
-export default function Hotels({setSelected}) {
+export default function Hotels({ setSelected }) {
   const { hotels, setHotels, setItem } = useAppContext();
 
-  
-  const deleteHotel = async (id) => {
+
+  const dropHotel = async (id) => {
     // console.log(id);
     try {
       const response = await axios.delete(`http://localhost:3000/hotels/drop/${id}`);
-      console.log(response.data); // Log success message or handle the response as needed
+      // console.log(response.data); // Log success message or handle the response as needed
 
-      // Optionally, you can update the hotels list after deletion
-      const res = await axios.get("http://localhost:3000/hotels");
-      setHotels(res.data);
+      if (response.data) {
+        // Optionally, you can update the hotels list after deletion
+        const res = await axios.get("http://localhost:3000/hotels");
+        setHotels(res.data);
+    
+        // make toast for drop
+        toast('Successfully Drop!', {
+          icon: '⛔',
+        });
+      }
     } catch (error) {
       console.error('Error deleting hotel:', error.message);
       // Optionally, you can handle the error or show a message to the user
     }
   };
-  
+
   return (
     <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
       <div className="dashboard-header">
@@ -29,7 +37,7 @@ export default function Hotels({setSelected}) {
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, voluptatem!</p>
       </div>
       <button type="button" class="btn btn-primary"
-      onClick={()=>{setSelected('addNewHotel')}}
+        onClick={() => { setSelected('addNewHotel') }}
       >Add new hotel</button>
       <table className="table-dashboard">
         <tr>
@@ -51,9 +59,13 @@ export default function Hotels({setSelected}) {
                   View
                 </button>
               </Link>
-              <button type="button" className="btn btn-warning action-btn">Edit</button>
+              <button type="button" className="btn btn-warning action-btn"
+                onClick={() => { setItem(item); setSelected('addNewHotel') }}
+              >
+                Edit
+              </button>
               <button type="button" className="btn btn-danger action-btn"
-                onClick={() => deleteHotel(item._id)}
+                onClick={() => dropHotel(item._id)}
               >
                 Drop
               </button>

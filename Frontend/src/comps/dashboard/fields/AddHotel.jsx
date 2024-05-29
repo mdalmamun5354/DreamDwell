@@ -2,20 +2,21 @@ import React, { useState } from 'react';
 import { useAppContext } from '../../../app';
 import axios from 'axios';
 import '../../../assets/stylesheets/addHotel.css';
+import toast from 'react-hot-toast';
 
 export default function AddHotel({ setSelected }) {
 
-  const { hotels, setHotels } = useAppContext();
-  
+  const { setHotels, item, setItem } = useAppContext();
+
   const [formData, setFormData] = useState({
-    name: '',
-    rating: '',
-    ratingCount: '',
-    price: '',
-    location: '',
-    facilities: '',
-    type: '',
-    localAttractions: ''
+    name: item ? item.name : '',
+    rating: item ? item.rating : '',
+    ratingCount: item ? item.ratingCount : '',
+    price: item ? item.price : '',
+    location: item ? item.location : '',
+    facilities: item ? item.facilities : '',
+    type: item ? item.type : '',
+    localAttractions: item ? item.localAttractions : ''
   });
 
   const handleChange = (e) => {
@@ -26,16 +27,41 @@ export default function AddHotel({ setSelected }) {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  async function editHotel() {
+    try {
+      const response = await axios.post(`http://localhost:3000/hotels/edit/${item._id}`, formData);
+      // console.log(response.data); // Log success message or handle the response as needed
+
+      if (response.data) {
+        const res = await axios.get("http://localhost:3000/hotels");
+        setHotels(res.data);
+        toast.success('Successfully Edited!')
+      }
+    } catch (error) {
+      console.error('Error editing hotel:', error.message);
+    }
+    setItem(null);
+  };
+
+  async function addHotel() {
     try {
       const response = await axios.post('http://localhost:3000/hotels/add', formData);
-      console.log('Hotel added:', response.data);
-      setHotels((hotels) => [...hotels, response.data]);
-      setSelected('hotels'); // Redirect back to hotels list
+      if (response.data) {
+        setHotels((hotels) => [...hotels, response.data]);
+        toast.success('Successfully Added!')
+      }
     } catch (error) {
       console.error('Error adding hotel:', error.message);
     }
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (item) editHotel();
+    else addHotel();
+
+    setSelected('hotels'); // Redirect back to hotels list
   };
 
   return (
@@ -122,7 +148,7 @@ export default function AddHotel({ setSelected }) {
           <button
             type="button"
             className="submitbtn cancelbtn"
-            onClick={() => setSelected('hotels')}
+            onClick={() => { setItem(null); setSelected('hotels') }}
           >
             Cancel
           </button>

@@ -5,12 +5,17 @@ import '../assets/stylesheets/dashboard.css';
 import Header from '../comps/dashboard/Header';
 import SideBar from '../comps/dashboard/SideBar';
 import Field from '../comps/dashboard/Field';
+import { useAppContext } from '../app';
 
 export default function Dashboard() {
 
+  const { setItem } = useAppContext();
   const [selected, setSelected] = useState('hotels');
 
   useEffect(() => {
+    // set item null for avoid previous item
+    setItem(null);
+    
     document.addEventListener("DOMContentLoaded", function () {
       // Adding click event listeners to each dashboard card
       var cards = document.querySelectorAll('.dashboard-card');

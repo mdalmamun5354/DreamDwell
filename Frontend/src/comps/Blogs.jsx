@@ -1,27 +1,24 @@
-import b1 from "../assets/images/blog/b1.jpg";
-import b2 from "../assets/images/blog/b2.jpg";
-import b3 from "../assets/images/blog/b3.jpg";
 import BlogItem from "./BlogItem";
 
 const Blogs = () => {
 
   const blogs = [
     {
-      img: b1,
+      img: "b1.jpg",
       title: "How to find your Desired Place more quickly",
       postedBy: "admin",
       date: "march 2018",
       content: "Lorem ipsum dolor sit amet, consectetur de adipisicing elit, sed do eiusmod tempore incididunt ut labore et dolore magna.",
     },
     {
-      img: b2,
+      img: "b2.jpg",
       title: "How to find your Desired Place more quickly",
       postedBy: "admin",
       date: "jun 2018",
       content: "Lorem ipsum dolor sit amet, consectetur de adipisicing elit, sed do eiusmod tempore incididunt ut labore et dolore magna.",
     },
     {
-      img: b3,
+      img: "b3.jpg",
       title: "How to find your Desired Place more quickly",
       postedBy: "Client",
       date: "march 2018",

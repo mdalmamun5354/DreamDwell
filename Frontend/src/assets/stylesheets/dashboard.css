@@ -52,9 +52,18 @@ background-color: #f8f9fa;
   padding: 10px 10px;
   font-size: 15px;
   font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.nav-select-field-con li:hover {
+  background-color: #fce8e8;
 }
 
 .selected {
   background-color: rgb(255, 208, 208);
-  border-radius: 10px;
+}
+
+.selected:hover {
+  background-color: rgb(252, 192, 192) !important;
 }
