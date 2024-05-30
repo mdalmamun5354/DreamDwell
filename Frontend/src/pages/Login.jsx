@@ -31,7 +31,7 @@ export default function Login() {
     setMessage('');
 
     try {
-      let url = 'http://localhost:3000/user';
+      let url = 'http://localhost:3000/users';
       if (type === 'login') url += '/login';
       else if (type === 'signup') url += '/signup';
 

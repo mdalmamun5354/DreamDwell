@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/hotels', hotelsRouter)
-app.use('/user', userRouter)
+app.use('/users', userRouter)
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`)

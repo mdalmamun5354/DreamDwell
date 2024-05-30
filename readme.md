@@ -7,6 +7,7 @@ Image Upload Locations
 Selected
 1. hotels
 2. addNewHotel
+3. users
 
 Color
 1. btn: #ff545a

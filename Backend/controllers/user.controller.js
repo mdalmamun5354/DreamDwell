@@ -39,3 +39,30 @@ export const login = async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+
+// get all users
+export const getAll = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json(users);
+  } catch (error) {
+    console.log("Error: ", error);
+    res.status(500).json(error);
+  }
+}
+
+// Delete a user by ID
+export const drop = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const deletedUser = await User.findByIdAndDelete(id);
+    if (!deletedUser) {
+      return res.status(404).json({ message: "Hotel not found" });
+    }
+    res.status(200).json({ message: "Hotel deleted successfully" });
+  } catch (error) {
+    console.log("Error: ", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
